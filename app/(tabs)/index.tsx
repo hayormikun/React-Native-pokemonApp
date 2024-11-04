@@ -1,70 +1,94 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { Card } from "@/components/Card";
+import {
+  Image,
+  StyleSheet,
+  Platform,
+  View,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
 
 export default function HomeScreen() {
+  const charmander = {
+    name: "Charmander",
+    image: require("../../assets/images/charmander.jpeg"),
+    type: "Fire",
+    hp: 30,
+    moves: ["Scratch", "Ember", "Growl", "Leer"],
+    weaknesses: ["Water", "Rock"],
+  };
+  const bulbasaur = {
+    name: "Bulbasaur",
+    image: require("../../assets/images/bulbasaur.jpeg"),
+    type: "Grass",
+    hp: 45,
+    moves: ["Tackle", "Vine Whip", "Growl", "Leech Seed"],
+    weaknesses: ["Fire", "Ice", "Flying", "Psychic"],
+  };
+
+  const pikachu = {
+    name: "Pikachu",
+    image: require("../../assets/images/pikachu.jpg"),
+    type: "Electric",
+    hp: 35,
+    moves: ["Quick Attack", "ThunderBolt", "Tail whip", "Growl"],
+    weaknesses: ["Ground"],
+  };
+
+  const squirtle = {
+    name: "Squirtle",
+    image: require("../../assets/images/squirtle.jpeg"),
+    type: "Water",
+    hp: 44,
+    moves: ["Tackle", "Water Gun", "Tail whip", "Withdraw"],
+    weaknesses: ["Electric", "Grass"],
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <SafeAreaView style={styles.safeContainer}>
+      <ScrollView>
+        <Card
+          name={bulbasaur.name}
+          image={bulbasaur.image}
+          type={bulbasaur.type}
+          hp={bulbasaur.hp}
+          moves={bulbasaur.moves}
+          weaknesses={bulbasaur.weaknesses}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <Card
+          name={charmander.name}
+          image={charmander.image}
+          type={charmander.type}
+          hp={charmander.hp}
+          moves={charmander.moves}
+          weaknesses={charmander.weaknesses}
+        />
+        <Card
+          name={pikachu.name}
+          image={pikachu.image}
+          type={pikachu.type}
+          hp={pikachu.hp}
+          moves={pikachu.moves}
+          weaknesses={pikachu.weaknesses}
+        />
+
+        <Card
+          name={squirtle.name}
+          image={squirtle.image}
+          type={squirtle.type}
+          hp={squirtle.hp}
+          moves={squirtle.moves}
+          weaknesses={squirtle.weaknesses}
+        />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  safeContainer: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
   },
 });
