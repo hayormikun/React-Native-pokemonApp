@@ -47,7 +47,6 @@ export const Card = ({
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.hp}>❤️{hp}</Text>
       </View>
-
       <Image
         source={image}
         style={styles.image}
